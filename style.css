@@ -1,6 +1,73 @@
+/* Body styling */
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }
+  font: 100%/1.5 system-ui; /* Font size 100%, line height 1.5 */
+}
+
+/* Navigation bar styling */
+nav {
+  display: flex; /* Use Flexbox for layout */
+  justify-content: space-around; /* Space links evenly */
+  align-items: center; /* Align links vertically */
+  padding: 1em; /* Add padding inside the navbar */
+  border-bottom: 1px solid oklch(80% 3% 200); /* Subtle bottom border */
+  margin-bottom: 1em; /* Space between nav and content */
+}
+
+nav ul, 
+nav li {
+  display: contents; /* Remove default list styling */
+}
+
+nav a {
+  flex: 1; /* Make links evenly spaced */
+  text-align: center; /* Center-align link text */
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Use the same color as the parent */
+  padding: 0.5em; /* Add padding for spacing */
+}
+
+/* Highlight the current page link */
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200); /* Highlight active page */
+  padding-bottom: 0.1em; /* Adjust padding to match border */
+  font-weight: bold; /* Emphasize the current link */
+}
+
+/* Hover styles for navigation links */
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent); /* Accent color border */
+  background-color: oklch(from var(--color-accent) 95% 5% h); /* Light hover background */
+}
+
+/* Contact form styling */
+form label,
+form input,
+form textarea,
+form button {
+  display: block; /* Stack form elements vertically */
+  width: 100%; /* Full width for inputs and textarea */
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+form label {
+  margin-block: 0.5em; /* Add space around labels */
+}
+
+form textarea {
+  height: 100px; /* Default height for textarea */
+}
+
+form button {
+  margin-top: 1em; /* Space above the button */
+  padding: 0.5em 1em; /* Add padding for the button */
+}
+
+/* Accent color */
+:root {
+  --color-accent: oklch(65% 50% 0); /* Define a custom accent color */
+}
+
+html, body {
+  accent-color: var(--color-accent); /* Use accent color for supported elements */
+}
+
