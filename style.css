@@ -1,6 +1,7 @@
 /* Accent color */
 :root {
   --color-accent: oklch(65% 50% 0);
+  color-scheme: light dark; /* Enable automatic light/dark mode */
 }
 
 html, body {
@@ -22,7 +23,11 @@ nav {
   justify-content: space-around;
   align-items: center;
   padding: 1em;
-  border-bottom: 1px solid oklch(80% 3% 200);
+
+  /* Use a CSS variable for the border color that adapts to light/dark mode */
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
+
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 1em;
@@ -39,17 +44,46 @@ nav a {
   text-decoration: none;
   color: inherit;
   padding: 0.5em;
+
+  /* Add transition for smooth color and border changes */
+  transition: border-bottom 0.3s ease, color 0.3s ease;
 }
 
 nav a.current {
-  border-bottom: 0.4em solid oklch(80% 3% 200);
+  /* Adjusted to use border color variable */
+  border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.1em;
   font-weight: bold;
 }
 
 nav a:hover {
+  /* Dark mode-friendly hover background color */
   border-bottom: 0.4em solid var(--color-accent);
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+/* Dark mode switcher styling */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%; /* Slightly smaller font size */
+  font-family: inherit; /* Inherit font-family for consistency */
+}
+
+.color-scheme select {
+  font: inherit; /* Match font-family and size */
+  padding: 0.2em 0.5em;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--color-accent);
+  color: white;
+  cursor: pointer;
+}
+
+.color-scheme select:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--color-accent);
 }
 
 /* Centered content container */
