@@ -1,14 +1,17 @@
 console.log("IT’S ALIVE!");
 
+// Helper function to select multiple elements
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-// Add navigation menu dynamically (Step 3)
+/* ----------------- Navigation & Dark Mode ----------------- */
+
 let pages = [
   { url: "", title: "Home" },
   { url: "projects/", title: "Projects" },
   { url: "contact/", title: "Contact" },
+  { url: "meta/", title: "Meta Analysis" },  // <-- Added Meta Analysis page
   { url: "https://github.com/iamangeldi", title: "GitHub Profile" },
 ];
 
@@ -20,9 +23,7 @@ document.body.prepend(nav);
 for (let p of pages) {
   let url = p.url;
   let title = p.title;
-
   url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
-
   let a = document.createElement("a");
   a.href = url;
   a.textContent = title;
@@ -31,13 +32,11 @@ for (let p of pages) {
     a.host === location.host && a.pathname === location.pathname
   );
   a.toggleAttribute("target", a.host !== location.host);
-
   nav.append(a);
 }
 
-// Add the dark mode switcher at the top of the body
 document.body.insertAdjacentHTML(
-  'afterbegin',
+  "afterbegin",
   `
   <label class="color-scheme">
     Theme:
@@ -47,33 +46,65 @@ document.body.insertAdjacentHTML(
       <option value="dark">Dark</option>
     </select>
   </label>
-`);
+`
+);
 
-// Function to set the color scheme and update the <select> element
 function setColorScheme(colorScheme) {
-  // Apply the selected color scheme to the root element
   document.documentElement.style.setProperty("color-scheme", colorScheme);
-
-  // Update the <select> element to reflect the current color scheme
   const select = document.querySelector(".color-scheme select");
   if (select) select.value = colorScheme;
 }
 
-// Get the <select> element
 const select = document.querySelector(".color-scheme select");
-
-// Load the saved color scheme preference from localStorage, if available
 if ("colorScheme" in localStorage) {
   setColorScheme(localStorage.colorScheme);
 }
-
-// Add an event listener to save and apply the user's preference
 select.addEventListener("input", function (event) {
   const newScheme = event.target.value;
-
-  // Save the user's preference to localStorage
   localStorage.colorScheme = newScheme;
-
-  // Apply the selected color scheme
   setColorScheme(newScheme);
 });
+
+/* ----------------- Reusable Functions ----------------- */
+
+// Fetch JSON data from a given URL
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching or parsing JSON data:", error);
+  }
+}
+
+// Render projects into a given container with a dynamic heading level
+export function renderProjects(projects, containerElement, headingLevel = "h2") {
+  // Clear existing content
+  containerElement.innerHTML = "";
+
+  // If there are no projects, show a placeholder message
+  if (!projects || projects.length === 0) {
+    containerElement.innerHTML = "<p>No projects available.</p>";
+    return;
+  }
+
+  projects.forEach((project) => {
+    const article = document.createElement("article");
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+      ${project.year ? `<p><strong>Year:</strong> ${project.year}</p>` : ""}
+    `;
+    containerElement.appendChild(article);
+  });
+}
+
+// Fetch GitHub profile data for a given username
+export async function fetchGitHubData(username) {
+  return await fetchJSON(`https://api.github.com/users/${username}`);
+}

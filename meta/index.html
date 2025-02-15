@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Code Meta-Analysis</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <!-- Nav added by global.js -->
+    <div class="content-center">
+      <h1>Code Meta-Analysis</h1>
+
+      <!-- Stats -->
+      <div id="stats"></div>
+
+      <!-- Selection info -->
+      <p id="selection-count">No commits selected</p>
+      <dl id="language-breakdown" class="stats"></dl>
+
+      <h2>Commits by Time of Day</h2>
+      <div id="chart"></div>
+
+      <!-- Tooltip for hovered commit -->
+      <dl id="commit-tooltip" class="info tooltip" hidden>
+        <dt>Commit</dt>
+        <dd><a href="" id="commit-link" target="_blank"></a></dd>
+        <dt>Date</dt>
+        <dd id="commit-date"></dd>
+        <dt>Author</dt>
+        <dd id="commit-author"></dd>
+        <dt>Lines</dt>
+        <dd id="commit-lines"></dd>
+      </dl>
+    </div>
+
+    <!-- Global nav script -->
+    <script src="../global.js" type="module"></script>
+
+    <!-- Main meta analysis script -->
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

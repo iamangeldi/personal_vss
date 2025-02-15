@@ -1,14 +1,16 @@
-/* Accent color */
+/* --------------------------
+   1) Root & Global Defaults
+--------------------------- */
 :root {
   --color-accent: oklch(65% 50% 0);
   color-scheme: light dark; /* Enable automatic light/dark mode */
 }
 
-html, body {
+html,
+body {
   accent-color: var(--color-accent);
 }
 
-/* Body styling */
 body {
   font: 100%/1.5 system-ui;
   margin: 0;
@@ -17,23 +19,22 @@ body {
   align-items: center;
 }
 
-/* Navigation bar styling */
+/* --------------------------
+   2) Navigation Bar
+--------------------------- */
 nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 1em;
-
-  /* Use a CSS variable for the border color that adapts to light/dark mode */
   --border-color: oklch(50% 10% 200 / 40%);
   border-bottom: 1px solid var(--border-color);
-
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 1em;
 }
 
-nav ul, 
+nav ul,
 nav li {
   display: contents;
 }
@@ -44,35 +45,33 @@ nav a {
   text-decoration: none;
   color: inherit;
   padding: 0.5em;
-
-  /* Add transition for smooth color and border changes */
   transition: border-bottom 0.3s ease, color 0.3s ease;
 }
 
 nav a.current {
-  /* Adjusted to use border color variable */
   border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.1em;
   font-weight: bold;
 }
 
 nav a:hover {
-  /* Dark mode-friendly hover background color */
   border-bottom: 0.4em solid var(--color-accent);
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
-/* Dark mode switcher styling */
+/* --------------------------
+   3) Dark Mode Switcher
+--------------------------- */
 .color-scheme {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 80%; /* Slightly smaller font size */
-  font-family: inherit; /* Inherit font-family for consistency */
+  font-size: 80%;
+  font-family: inherit;
 }
 
 .color-scheme select {
-  font: inherit; /* Match font-family and size */
+  font: inherit;
   padding: 0.2em 0.5em;
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -86,14 +85,38 @@ nav a:hover {
   box-shadow: 0 0 5px var(--color-accent);
 }
 
-/* Centered content container */
+/* --------------------------
+   4) Layout Helpers
+--------------------------- */
 .content-center {
   text-align: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
+  margin-bottom: 2em;
 }
 
-/* Contact form styling */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 400%;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 150%;
+}
+
+/* --------------------------
+   5) Contact Form
+--------------------------- */
 form {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -109,7 +132,7 @@ form label {
   text-align: left;
 }
 
-form input, 
+form input,
 form textarea {
   font: inherit;
   padding: 0.5em;
@@ -140,7 +163,9 @@ form button:hover {
   background-color: oklch(65% 45% 0);
 }
 
-/* Projects grid styling */
+/* --------------------------
+   6) Projects Grid
+--------------------------- */
 .projects {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -165,15 +190,15 @@ form button:hover {
 
 .projects article {
   display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
+  gap: 0.5em;
   padding: 1em;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f9f9f9;
 }
 
-.projects article h2 {
+.projects article h2,
+.projects article h3 {
   margin: 0;
   font-size: 1.2em;
 }
@@ -184,20 +209,69 @@ form button:hover {
 }
 
 .projects article p {
-  margin-top: 0.5em;
+  margin: 0.5em 0;
 }
 
-/* Global heading styles */
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  text-wrap: balance;
+/* --------------------------
+   7) Pie Chart & Legend
+--------------------------- */
+/* Container for pie + legend side by side (or stacked on small screens) */
+.chart-container {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  margin-block: 2em;
 }
 
-h1 {
-  font-size: 400%;
-  margin-bottom: 0.5em;
+/* Restrict pie chart size; uses viewBox for aspect ratio */
+#projects-pie-plot {
+  max-width: 20em;
+  overflow: visible;
 }
 
-h2 {
-  font-size: 150%;
+/* Pie wedge styles */
+#projects-pie-plot path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+/* Fade out non-hovered wedges on wedge hover */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Legend styling */
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
+  gap: 0.5em;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Color swatch for each legend item */
+.legend li .swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 2px;
+}
+
+/* If a wedge or legend item is selected, highlight it */
+.selected {
+  /* Override the color with a highlight color of your choice */
+  --color: oklch(60% 45% 0) !important;
+}
+
+/* For a selected wedge, apply the same highlight color as fill */
+.selected:is(path) {
+  fill: var(--color);
 }

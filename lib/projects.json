@@ -1,0 +1,75 @@
+[
+    {
+      "title": "Project One",
+      "year": "2023",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+One",
+      "description": "Description for Project One."
+    },
+    {
+      "title": "Project Two",
+      "year": "2022",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Two",
+      "description": "Description for Project Two."
+    },
+    {
+      "title": "Project Three",
+      "year": "2024",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Three",
+      "description": "Description for Project Three."
+    },
+    {
+      "title": "Project Four",
+      "year": "2021",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Four",
+      "description": "Description for Project Four."
+    },
+    {
+      "title": "Project Five",
+      "year": "2020",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Five",
+      "description": "Description for Project Five."
+    },
+    {
+      "title": "Project Six",
+      "year": "2023",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Six",
+      "description": "Description for Project Six."
+    },
+    {
+      "title": "Project Seven",
+      "year": "2022",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Seven",
+      "description": "Description for Project Seven."
+    },
+    {
+      "title": "Project Eight",
+      "year": "2024",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Eight",
+      "description": "Description for Project Eight."
+    },
+    {
+      "title": "Project Nine",
+      "year": "2021",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Nine",
+      "description": "Description for Project Nine."
+    },
+    {
+      "title": "Project Ten",
+      "year": "2020",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Ten",
+      "description": "Description for Project Ten."
+    },
+    {
+      "title": "Project Eleven",
+      "year": "2023",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Eleven",
+      "description": "Description for Project Eleven."
+    },
+    {
+      "title": "Project Twelve",
+      "year": "2022",
+      "image": "https://via.placeholder.com/300x200.png?text=Project+Twelve",
+      "description": "Description for Project Twelve."
+    }
+  ]
+  

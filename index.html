@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imangali Amangeldi</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- The navigation and dark mode switcher will be dynamically added here by global.js -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation and dark mode switcher will be added by global.js -->
     <div class="content-center">
-        <h1>Imangali Amangeldi</h1>
-        <p>This is my first try at a CSS-styled website.</p>
-        <img src="images/bigben_imangali_london.jpg" alt="My recent London trip." style="width:300px; height:auto;">
+      <h1>Imangali Amangeldi</h1>
+      <p>This is my first try at a CSS-styled website.</p>
+      <img
+        src="images/bigben_imangali_london.jpg"
+        alt="My recent London trip."
+        style="width:300px; height:auto;"
+      />
     </div>
-    <script src="global.js"></script>
-</body>
+
+    <!-- Latest Projects Section -->
+    <div class="content-center">
+      <h2>Latest Projects</h2>
+      <div class="projects">
+        <!-- Latest projects will be rendered here by index.js -->
+      </div>
+    </div>
+
+    <!-- GitHub Profile Stats Section -->
+    <div class="content-center">
+      <h2>GitHub Profile Stats</h2>
+      <div id="profile-stats">
+        <!-- GitHub stats will be rendered here -->
+      </div>
+    </div>
+
+    <script src="global.js" type="module"></script>
+    <script src="index.js" type="module" defer></script>
+  </body>
 </html>
