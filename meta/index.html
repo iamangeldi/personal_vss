@@ -2,24 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Code Meta-Analysis</title>
+    <title>Code Meta-Analysis – Lab 8: Animation & Scrollytelling</title>
     <link rel="stylesheet" href="../style.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
-    <!-- Nav added by global.js -->
     <div class="content-center">
       <h1>Code Meta-Analysis</h1>
 
-      <!-- Stats -->
+      <!-- Summary Stats -->
       <div id="stats"></div>
 
-      <!-- Selection info -->
+      <!-- Brush selection info -->
       <p id="selection-count">No commits selected</p>
       <dl id="language-breakdown" class="stats"></dl>
 
-      <h2>Commits by Time of Day</h2>
-      <div id="chart"></div>
+      <!-- Filtering UI: Slider and Time Display -->
+      <div id="time-filter">
+        <label for="timeSlider">
+          Show commits until: <time id="selectedTime"></time>
+        </label>
+        <input type="range" id="timeSlider" min="0" max="100" value="100" />
+      </div>
+
+      <!-- Scrollytelling for Commits -->
+      <div id="scrollytelling">
+        <!-- Narrative scroller -->
+        <div id="scroll-container">
+          <div id="spacer"></div>
+          <div id="items-container"></div>
+        </div>
+        <!-- Scatterplot -->
+        <div id="chart"></div>
+      </div>
+
+      <!-- File Sizes Unit Visualization -->
+      <h2>File Sizes</h2>
+      <dl class="files"></dl>
 
       <!-- Tooltip for hovered commit -->
       <dl id="commit-tooltip" class="info tooltip" hidden>
@@ -34,10 +53,9 @@
       </dl>
     </div>
 
-    <!-- Global nav script -->
+    <!-- Global nav script (if any) -->
     <script src="../global.js" type="module"></script>
-
-    <!-- Main meta analysis script -->
+    <!-- Main Meta Analysis Script -->
     <script src="main.js" type="module"></script>
   </body>
 </html>
